@@ -24,5 +24,5 @@ window.KAL = {
   // ⛔ VA EL SERVICIO «SOLO FAMILIAS» (`kms-familias`), NO `kms-data-api`: ése NO está abierto a
   // internet —hace falta identificarse ante Google para preguntarle— así que el navegador de una
   // familia no puede llamarlo, y abrirlo expondría sus 51 verbos. El de familias monta UNA ruta.
-  servidor: '',
+  servidor: 'https://kms-familias-oi2gtytjlq-no.a.run.app',
 };
