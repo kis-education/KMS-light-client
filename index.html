@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ⛔ KAL-7: nada de secretos en la URL, y ni un `Referer` hacia fuera. -->
+<meta name="referrer" content="no-referrer">
+<title>Entrar — Kaleide</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<main class="caja">
+  <h1>Entrar</h1>
+
+  <p class="aviso" id="aviso-prueba">
+    Esta página es <strong>la prueba</strong> de que una familia puede acreditar su correo desde
+    fuera de Apps Script. <strong>No es el portal</strong>: aquí no hay datos de nadie.
+  </p>
+
+  <div id="sin-configurar" class="malo" hidden>
+    <p>Falta la configuración de Identity Platform. Rellena <code>config.js</code>.</p>
+  </div>
+
+  <form id="forma" autocomplete="on">
+    <label for="correo">Correo</label>
+    <input id="correo" name="username" type="email" required autocomplete="username"
+           inputmode="email" placeholder="tu@correo">
+
+    <label for="clave">Contraseña</label>
+    <input id="clave" name="password" type="password" required autocomplete="current-password">
+
+    <button id="entrar" type="submit">Entrar</button>
+  </form>
+
+  <p class="o">o</p>
+
+  <!-- El botón de Google lo pinta Google Identity Services aquí dentro. -->
+  <div id="google"></div>
+  <p class="nota" id="google-no" hidden>Entrar con Google no está disponible ahora mismo.</p>
+
+  <div id="parte" class="parte" hidden></div>
+
+  <details class="medidas">
+    <summary>Lo que se ha medido</summary>
+    <dl id="medidas"></dl>
+  </details>
+</main>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="config.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
