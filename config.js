@@ -17,7 +17,7 @@ window.KAL = {
   // El identificador de cliente OAuth de tipo «Aplicación web», para entrar con Google.
   // ⛔ Pide SOLO `openid email profile`. Ni un permiso de Workspace: DL-S93 §B prohíbe los
   // RESTRINGIDOS, y entrar con Google NO necesita ninguno.
-  googleClientId: '',
+  googleClientId: '402626947179-4lk792hfipm41b54hmi7bcbr7sdfm5m5.apps.googleusercontent.com',
   // La dirección del servidor que verifica el testigo y decide. Mientras esté vacía, la página
   // acredita el correo y lo dice, pero NO pregunta a nadie si esa persona puede entrar.
   //
