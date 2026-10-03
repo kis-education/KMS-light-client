@@ -11,14 +11,18 @@
  */
 window.KAL = {
   // El identificador del proyecto de Google donde vive Identity Platform.
-  proyecto: '',
+  proyecto: 'kis-app-dfec6',
   // La clave de navegador (Identity Platform → «Proveedores» → el fragmento de código).
-  apiKey: '',
+  apiKey: 'AIzaSyC-XnO49n2qlYlOffYy77AUZ_9UsAOC0IA',
   // El identificador de cliente OAuth de tipo «Aplicación web», para entrar con Google.
   // ⛔ Pide SOLO `openid email profile`. Ni un permiso de Workspace: DL-S93 §B prohíbe los
   // RESTRINGIDOS, y entrar con Google NO necesita ninguno.
   googleClientId: '',
   // La dirección del servidor que verifica el testigo y decide. Mientras esté vacía, la página
   // acredita el correo y lo dice, pero NO pregunta a nadie si esa persona puede entrar.
+  //
+  // ⛔ VA EL SERVICIO «SOLO FAMILIAS» (`kms-familias`), NO `kms-data-api`: ése NO está abierto a
+  // internet —hace falta identificarse ante Google para preguntarle— así que el navegador de una
+  // familia no puede llamarlo, y abrirlo expondría sus 51 verbos. El de familias monta UNA ruta.
   servidor: '',
 };
