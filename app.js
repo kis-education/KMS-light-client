@@ -21,6 +21,8 @@
  * ⛔ KIS-11: esta página no registra ni un correo. Lo que se mide son TIEMPOS y CÓDIGOS.
  */
 
+import { abrirLaSala } from './sala.js';
+
 const $ = (id) => document.getElementById(id);
 const CFG = window.KAL || {};
 const IDP = 'https://identitytoolkit.googleapis.com/v1/accounts:';
@@ -81,6 +83,26 @@ async function aIdentityPlatform(metodo, cuerpo) {
 }
 
 /**
+ * PEDIRLE UNA LECTURA AL SERVIDOR. ⛔ Lo ÚNICO que viaja en el cuerpo es el NOMBRE de la llamada:
+ * ni quién soy, ni de qué colegio, ni qué niño — eso lo resuelve el servidor con el testigo, y por
+ * eso un cuerpo que mintiera no cambiaría nada.
+ */
+async function pedir(ruta, payload) {
+  const r = await fetch(CFG.servidor.replace(/\/+$/, '') + '/familias/datos', {
+    method: 'POST',
+    headers: { authorization: 'Bearer ' + testigo, 'content-type': 'application/json' },
+    body: JSON.stringify({ ruta, payload: payload || {} }),
+  });
+  const j = await r.json().catch(() => null);
+  if (!r.ok || !j || !j.ok) {
+    const e = new Error((j && j.code) || 'NO_COMPROBABLE');
+    e.code = (j && j.code) || 'NO_COMPROBABLE';
+    throw e;
+  }
+  return j.datos;
+}
+
+/**
  * LA SEGUNDA MITAD: presentarle el testigo al servidor. ⛔ El cuerpo va VACÍO — no porque dé igual,
  * sino porque es la forma de que no quepa la duda de quién decide.
  */
@@ -108,8 +130,11 @@ async function preguntarleAlServidor() {
   medir('primera llamada ya acreditado', performance.now() - t0);
 
   if (j && j.ok && j.puede) {
-    contar('bien', 'Puedes entrar', '<p>El servidor ha resuelto quién eres en el colegio y te '
-      + 'reconoce como familia. <br><small>Aquí es donde empezaría el portal.</small></p>');
+    // ⛔ El servidor ya dijo que SÍ. A partir de aquí la página solo PIDE y PINTA: cada llamada
+    //    vuelve a presentar el testigo y el servidor vuelve a decidir — no se guarda un «ya entré».
+    abrirLaSala(pedir, medir).catch(() => {
+      contar('malo', 'No se ha podido abrir', '<p>' + TEXTOS.NO_COMPROBABLE + '</p>');
+    });
     return;
   }
   const code = (j && j.code) || 'NO_COMPROBABLE';
