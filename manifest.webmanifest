@@ -1,0 +1,14 @@
+{
+  "name": "Kaleide — Familias",
+  "short_name": "Kaleide",
+  "description": "El portal de las familias del colegio.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#00a19a",
+  "icons": [
+    { "src": "icono-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icono-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
