@@ -25,4 +25,8 @@ window.KAL = {
   // internet —hace falta identificarse ante Google para preguntarle— así que el navegador de una
   // familia no puede llamarlo, y abrirlo expondría sus 51 verbos. El de familias monta UNA ruta.
   servidor: 'https://kms-familias-oi2gtytjlq-no.a.run.app',
+  // ★ CLI 126 — la dirección del KMS (la /exec que abre el personal). Si quien entra aquí es
+  // personal del colegio, se le lleva ahí (y si además es tutor, elige). Solo se acepta una dirección
+  // `https://script.google.com/…`. ⛔ Ir al KMS no concede nada: el KMS comprueba su acceso al llegar.
+  kms: 'https://script.google.com/macros/s/AKfycbyQzxUWNWuYboN5CODnjDuQ80FS4u1zWBQWLn48V060SCpqc8N_apTDKI5JkGjLe4sM/exec',
 };
