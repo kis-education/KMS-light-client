@@ -12,6 +12,23 @@ node scripts/publicar-cliente-ligero.mjs <este repositorio>
 # y después commit + push aquí
 ```
 
+⛔ **Nadie lo publica solo, y por eso hay que acordarse.** Las pantallas son las MISMAS del portal del
+KMS, así que **tocar una pantalla del portal cambia esto** — y mientras nadie recompile, la familia
+sigue viendo la de antes **sin que falle nada**. Que se publique solo está pendiente de una decisión
+(`kis-app docs/kms/pendiente-diego.md` `D250`).
+
+**Y «¿está publicado ya tal cambio?» se contesta con una orden**, desde `kis-app`:
+
+```bash
+node scripts/ya-esta-vivo.mjs <rastro> --cliente-ligero
+```
+
+Lee la portada que sirven las Pages y sigue el `src=` que ella declara —el nombre del paquete lleva
+huella y **cambia en cada compilación**, incluso sin tocar el fuente—. ⚠️ **El paquete está
+MINIFICADO**: un nombre de función o de constante **no vale como rastro** y da un «no está» falso;
+solo sobreviven los **literales de cadena** (el texto de un mensaje, una clave de texto, el nombre de
+una ruta, la versión del frontal).
+
 ## ⛔⛔ La regla que lo gobierna todo: LA IDENTIDAD LA RESUELVE EL SERVIDOR
 
 Identity Platform acredita **una sola cosa**: *«quien presenta esto controla este buzón»*. **Quién es
